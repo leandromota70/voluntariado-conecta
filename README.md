@@ -1,4 +1,4 @@
-# 📌 Voluntariado Conecta  
+#  Voluntariado Conecta  
 Sistema de Gestão de Vagas de Voluntariado para ONGs
 
 ---
@@ -21,6 +21,15 @@ Este sistema foi criado como projeto acadêmico no curso **Análise e Desenvolvi
 - Tatyelle Costa  
 
 ---
+
+## Prova de Conceito
+
+O projeto evoluiu de uma versão inicial em HTML e CSS estático para uma aplicação dinâmica.  
+Nesta etapa, implementamos:
+- Envio de formulários com PHP
+- Integração com banco de dados via SQL
+
+Essa prova de conceito valida a comunicação entre front-end e back-end, garantindo o registro e armazenamento dos dados enviados pelos usuários.
 
 ## 🚀 Funcionalidades
 
