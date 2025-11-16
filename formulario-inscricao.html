@@ -39,7 +39,8 @@
             </div>
 
             <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
-                <form id="volunteerForm">
+                <form id="volunteerForm" action="inscricao.php" method="POST">
+
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome completo*</label>
@@ -156,23 +157,5 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        AOS.init();
-        feather.replace();
-        
-        // Form submission handling
-        document.getElementById('volunteerForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Hide form and show success message
-            document.getElementById('volunteerForm').classList.add('hidden');
-            document.getElementById('successMessage').classList.remove('hidden');
-            
-            // Scroll to success message
-            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
-        });
-        
-    </script>
 </body>
 </html>

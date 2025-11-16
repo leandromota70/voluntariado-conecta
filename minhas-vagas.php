@@ -62,10 +62,10 @@ $resultado = $stmt->get_result();
                             <i data-feather="plus" class="mr-3"></i>
                             Criar Nova Vaga
                         </a>
-                        <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-indigo-200 hover:text-white hover:bg-indigo-600 rounded-lg">
-                            <i data-feather="users" class="mr-3"></i>
-                            Inscritos
-                        </a>
+                        <a href="inscritos.php" class="flex items-center px-4 py-2 text-sm font-medium text-indigo-200 hover:text-white hover:bg-indigo-600 rounded-lg">
+    <i data-feather="users" class="mr-3"></i>
+    Inscritos
+</a>
                     </nav>
                 </div>
                 <div class="px-4 mt-auto">

@@ -59,11 +59,10 @@ $nomeOng = $_SESSION['nome_ong'] ?? 'ONG';
     </a>
 
     <!-- Inscritos (ainda só visual) -->
-    <a href="#"
-       class="flex items-center px-4 py-2 text-sm font-medium text-indigo-200 hover:text-white hover:bg-indigo-600 rounded-lg">
-        <i data-feather="users" class="mr-3"></i>
-        Inscritos
-    </a>
+   <a href="inscritos.php" class="flex items-center px-4 py-2 text-sm font-medium text-indigo-200 hover:text-white hover:bg-indigo-600 rounded-lg">
+    <i data-feather="users" class="mr-3"></i>
+    Inscritos
+</a>
 </nav>
 
                     </div>
