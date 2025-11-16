@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voluntariado Conecta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #4f46e5 0%, #10b981 100%);
+        }
+        .btn-primary {
+            background-color: #4f46e5;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #4338ca;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background-color: #10b981;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: #0d9f6e;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i data-feather="heart" class="text-indigo-600"></i>
+                <span class="text-xl font-bold text-indigo-600">Voluntariado Conecta</span>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-indigo-600 font-medium">Home</a>
+                <a href="catalogo.html" class="text-gray-600 hover:text-indigo-600">Quero ser Voluntário</a>
+                <a href="ong-login.php" class="text-gray-600 hover:text-indigo-600">Sou ONG</a>
+                <a href="ong-login.php" class="text-gray-600 hover:text-indigo-600">Login</a>
+            </nav>
+            <button class="md:hidden">
+                <i data-feather="menu" class="text-gray-600"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-20">
+        <div class="container mx-auto px-4 text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Conectando voluntários e ONGs</h1>
+            <p class="text-xl mb-10 max-w-2xl mx-auto">Encontre oportunidades de voluntariado ou cadastre sua ONG para recrutar voluntários.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="catalogo.html" class="btn-primary text-white px-8 py-3 rounded-lg font-medium shadow-lg">Quero ser Voluntário</a>
+                <a href="ong-login.php" class="btn-secondary text-white px-8 py-3 rounded-lg font-medium shadow-lg">Sou ONG</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Como funciona</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center" data-aos="fade-up">
+                    <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="search" class="text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Encontre oportunidades</h3>
+                    <p class="text-gray-600">Busque por vagas de voluntariado que combinam com suas habilidades e disponibilidade.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="edit" class="text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Inscreva-se</h3>
+                    <p class="text-gray-600">Preencha o formulário de inscrição e aguarde o contato da organização.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="users" class="text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Faça a diferença</h3>
+                    <p class="text-gray-600">Participe do projeto e contribua para causas que transformam vidas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <i data-feather="heart" class="text-indigo-400"></i>
+                        <span class="text-xl font-bold">Voluntariado Conecta</span>
+                    </div>
+                    <p class="text-gray-400 mt-2">Conectando pessoas a causas sociais</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="linkedin"></i></a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Voluntariado Conecta. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init();
+        feather.replace();
+    </script>
+</body>
+</html>

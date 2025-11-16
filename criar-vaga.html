@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Vaga | Voluntariado Conecta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="font-sans antialiased bg-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 bg-indigo-700">
+                <div class="flex items-center h-16 px-4 bg-indigo-800">
+                    <div class="flex items-center space-x-2">
+                        <i data-feather="heart" class="text-white"></i>
+                        <span class="text-xl font-bold text-white">ONG Educar</span>
+                    </div>
+                </div>
+                <div class="flex flex-col flex-grow pt-5 pb-4 overflow-y-auto">
+                    <div class="flex-1 px-4 space-y-2">
+                        <nav class="flex-1 space-y-2">
+                            <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-indigo-200 hover:text-white hover:bg-indigo-600 rounded-lg">
+                                <i data-feather="home" class="mr-3"></i>
+                                Dashboard
+                            </a>
+                            <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-indigo-200 hover:text-white hover:bg-indigo-600 rounded-lg">
+                                <i data-feather="file-text" class="mr-3"></i>
+                                Minhas Vagas
+                            </a>
+                            <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-white bg-indigo-800 rounded-lg">
+                                <i data-feather="plus" class="mr-3"></i>
+                                Criar Nova Vaga
+                            </a>
+                            <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-indigo-200 hover:text-white hover:bg-indigo-600 rounded-lg">
+                                <i data-feather="users" class="mr-3"></i>
+                                Inscritos
+                            </a>
+                        </nav>
+                    </div>
+                    <div class="px-4 mt-auto">
+                        <div class="flex items-center p-2 rounded-lg bg-indigo-800">
+                            <div class="flex-shrink-0">
+                                <img class="w-10 h-10 rounded-full" src="http://static.photos/people/200x200/1" alt="User profile">
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-white">Maria Silva</p>
+                                <a href="#" class="text-xs font-medium text-indigo-200 hover:text-white">Sair</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Mobile header -->
+            <div class="md:hidden bg-white shadow-sm">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <div class="flex items-center space-x-2">
+                        <i data-feather="heart" class="text-indigo-600"></i>
+                        <span class="text-lg font-bold text-indigo-600">ONG Educar</span>
+                    </div>
+                    <button>
+                        <i data-feather="menu" class="text-gray-600"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <main class="flex-1 overflow-y-auto p-4">
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-6">
+                        <a href="dashboard-ong.html" class="text-indigo-600 hover:text-indigo-800 flex items-center">
+                            <i data-feather="arrow-left" class="mr-2"></i> Voltar para dashboard
+                        </a>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h1 class="text-xl font-bold text-gray-800">Criar Nova Vaga de Voluntariado</h1>
+                        </div>
+                        
+                        <form class="p-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="md:col-span-2">
+                                    <label for="titulo" class="block text-sm font-medium text-gray-700 mb-1">Título da Vaga*</label>
+                                    <input type="text" id="titulo" name="titulo" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Ex: Apoio Escolar para Crianças">
+                                </div>
+                                
+                                <div>
+                                    <label for="area" class="block text-sm font-medium text-gray-700 mb-1">Área de Atuação*</label>
+                                    <select id="area" name="area" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                        <option value="">Selecione</option>
+                                        <option>Educação</option>
+                                        <option>Meio Ambiente</option>
+                                        <option>Saúde</option>
+                                        <option>Assistência Social</option>
+                                        <option>Cultura</option>
+                                        <option>Esporte</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label for="tipo" class="block text-sm font-medium text-gray-700 mb-1">Tipo de Atividade*</label>
+                                    <select id="tipo" name="tipo" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                        <option value="">Selecione</option>
+                                        <option>Presencial</option>
+                                        <option>Remoto</option>
+                                        <option>Híbrido</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label for="cidade" class="block text-sm font-medium text-gray-700 mb-1">Cidade*</label>
+                                    <input type="text" id="cidade" name="cidade" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                                
+                                <div>
+                                    <label for="estado" class="block text-sm font-medium text-gray-700 mb-1">Estado*</label>
+                                    <select id="estado" name="estado" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                        <option value="">Selecione</option>
+                                        <option>SP</option>
+                                        <option>RJ</option>
+                                        <option>MG</option>
+                                        <option>RS</option>
+                                        <option>PR</option>
+                                    </select>
+                                </div>
+<form method="POST" action="processa-vaga.php">
+  <input type="text" name="titulo" placeholder="Título da vaga" required>
+  <input type="text" name="area" placeholder="Área" required>
+  <input type="text" name="tipo_atividade" placeholder="Tipo de atividade" required>
+  <input type="text" name="cidade" placeholder="Cidade" required>
+  <input type="text" name="estado" placeholder="Estado" required>
+  <input type="text" name="carga_horaria_semana" placeholder="Carga horária por semana">
+  <input type="text" name="dias_horarios" placeholder="Dias e horários">
+  <textarea name="requisitos" placeholder="Requisitos"></textarea>
+  <textarea name="beneficios" placeholder="Benefícios"></textarea>
+  <select name="status">
+    <option value="ativa">Ativa</option>
+    <option value="inativa">Inativa</option>
+  </select>
+  <button type="submit">Criar Vaga</button>
+</form>
+
+
+
+
+                                
+                                <div class="md:col-span-2">
+                                    <label for="descricao" class="block text-sm font-medium text-gray-700 mb-1">Descrição da Vaga*</label>
+                                    <textarea id="descricao" name="descricao" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                                </div>
+                                
+                                <div class="md:col-span-
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição | Voluntariado Conecta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="font-sans antialiased bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i data-feather="heart" class="text-indigo-600"></i>
+                <span class="text-xl font-bold text-indigo-600">Voluntariado Conecta</span>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-gray-600 hover:text-indigo-600">Home</a>
+                <a href="catalogo.html" class="text-indigo-600 font-medium">Quero ser Voluntário</a>
+                <a href="ong-login.html" class="text-gray-600 hover:text-indigo-600">Sou ONG</a>
+                <a href="login.html" class="text-gray-600 hover:text-indigo-600">Login</a>
+            </nav>
+            <button class="md:hidden">
+                <i data-feather="menu" class="text-gray-600"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-3xl mx-auto">
+            <div class="mb-8">
+                <h1 class="text-2xl font-bold text-gray-800 mb-2">Inscrição para: Apoio Escolar para Crianças</h1>
+                <p class="text-gray-600">Preencha o formulário abaixo para se candidatar a esta vaga de voluntariado.</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
+                <form id="volunteerForm">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome completo*</label>
+                            <input type="text" id="nome" name="nome" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail*</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <div>
+                            <label for="telefone" class="block text-sm font-medium text-gray-700 mb-1">Telefone*</label>
+                            <input type="tel" id="telefone" name="telefone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <div>
+                            <label for="cidade" class="block text-sm font-medium text-gray-700 mb-1">Cidade*</label>
+                            <input type="text" id="cidade" name="cidade" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Disponibilidade*</label>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="disponibilidade" value="manha" class="rounded text-indigo-600 focus:ring-indigo-500">
+                                    <span class="ml-2 text-gray-700">Manhã</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="disponibilidade" value="tarde" class="rounded text-indigo-600 focus:ring-indigo-500">
+                                    <span class="ml-2 text-gray-700">Tarde</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="disponibilidade" value="noite" class="rounded text-indigo-600 focus:ring-indigo-500">
+                                    <span class="ml-2 text-gray-700">Noite</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="disponibilidade" value="fds" class="rounded text-indigo-600 focus:ring-indigo-500">
+                                    <span class="ml-2 text-gray-700">Finais de semana</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="experiencia" class="block text-sm font-medium text-gray-700 mb-1">Conte um pouco sobre sua experiência (opcional)</label>
+                            <textarea id="experiencia" name="experiencia" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="motivacao" class="block text-sm font-medium text-gray-700 mb-1">Por que você quer participar deste projeto?*</label>
+                            <textarea id="motivacao" name="motivacao" rows="3" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                        </div>
+                        <div class="md:col-span-2">
+                            <div class="flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input id="lgpd" name="lgpd" type="checkbox" required class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                                </div>
+                                <div class="ml-3 text-sm">
+                                    <label for="lgpd" class="font-medium text-gray-700">Autorizo o uso dos meus dados para este projeto*</label>
+                                    <p class="text-gray-500">Concordo com a Política de Privacidade e o tratamento dos meus dados pessoais conforme a LGPD.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex justify-end">
+                        <a href="detalhe-vaga.html" class="mr-4 px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
+                            Cancelar
+                        </a>
+                        <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                            Enviar Inscrição
+                        </button>
+                    </div>
+                </form>
+
+
+
+                <!-- Success Message (hidden by default) -->
+                <div id="successMessage" class="hidden mt-8 p-6 bg-green-50 rounded-lg">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i data-feather="check-circle" class="h-5 w-5 text-green-600"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-sm font-medium text-green-800">Inscrição realizada com sucesso!</h3>
+                            <div class="mt-2 text-sm text-green-700">
+                                <p>Você receberá um e-mail em breve com mais informações. Obrigado por se voluntariar!</p>
+                            </div>
+                            <div class="mt-4">
+                                <a href="catalogo.html" class="text-sm font-medium text-green-700 hover:text-green-600 underline">
+                                    Ver outras oportunidades
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <i data-feather="heart" class="text-indigo-400"></i>
+                        <span class="text-xl font-bold">Voluntariado Conecta</span>
+                    </div>
+                    <p class="text-gray-400 mt-2">Conectando pessoas a causas sociais</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i data-feather="linkedin"></i></a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Voluntariado Conecta. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init();
+        feather.replace();
+        
+        // Form submission handling
+        document.getElementById('volunteerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Hide form and show success message
+            document.getElementById('volunteerForm').classList.add('hidden');
+            document.getElementById('successMessage').classList.remove('hidden');
+            
+            // Scroll to success message
+            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+    </script>
+</body>
+</html>
