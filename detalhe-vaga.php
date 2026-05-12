@@ -64,19 +64,20 @@ if ($resultado->num_rows === 1) {
 
         <div class="bg-white rounded-lg shadow-md overflow-hidden">
             <div class="p-6 border-b border-gray-200">
-                <h1 class="text-2xl font-bold text-gray-800 mb-2">Apoio Escolar para Crianças</h1>
+                <h1 class="text-2xl font-bold text-gray-800 mb-2">
+    <?php echo htmlspecialchars($vaga['titulo']); ?></h1>
                 <div class="flex flex-wrap items-center gap-4 text-gray-600">
                     <span class="flex items-center">
                         <i data-feather="map-pin" class="mr-2 w-4 h-4"></i>
-                        São Paulo, SP
+                     <?php echo htmlspecialchars($vaga['cidade'] . ', ' . $vaga['estado']); ?>   
                     </span>
                     <span class="flex items-center">
                         <i data-feather="calendar" class="mr-2 w-4 h-4"></i>
-                        Segundas e Quartas, 14h-17h
+                       <?php echo htmlspecialchars($vaga['dias_horarios']); ?> 
                     </span>
                     <span class="flex items-center">
                         <i data-feather="clock" class="mr-2 w-4 h-4"></i>
-                        3 horas por semana
+                        <?php echo htmlspecialchars($vaga['horas_semana']); ?>
                     </span>
                 </div>
                 <div class="mt-4 flex flex-wrap gap-2">
@@ -172,7 +173,7 @@ if ($resultado->num_rows === 1) {
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 Voluntariado Conecta. Todos os direitos reservados.</p>
+                <p>&copy; 2026 Voluntariado Conecta. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>

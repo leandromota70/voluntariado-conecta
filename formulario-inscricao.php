@@ -3,10 +3,17 @@ require 'conexao.php';
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-$id_vaga = intval($_GET['id_vaga'] ?? 0);
+$id_vaga = intval($_GET['id_vaga'] ?? $_POST['id_vaga'] ?? 0);
+
+$stmt = $conexao->prepare("SELECT titulo FROM vagas WHERE id_vaga = ?");
+$stmt->bind_param("i", $id_vaga);
+$stmt->execute();
+$res = $stmt->get_result();
+$vaga = $res->fetch_assoc();
+
 if ($_POST) {
 
-    $nome = $_POST['nome'];
+    $nome = trim($_POST['nome'] ?? '');
     $email = $_POST['email'];
     $telefone = $_POST['telefone'];
     $cidade = $_POST['cidade'];
@@ -90,7 +97,7 @@ else {
     <main class="container mx-auto px-4 py-8">
         <div class="max-w-3xl mx-auto">
             <div class="mb-8">
-                <h1 class="text-2xl font-bold text-gray-800 mb-2">Inscrição para: Apoio Escolar para Crianças</h1>
+                <h1 class="text-2xl font-bold text-gray-800 mb-2">Inscrição para: <?php echo htmlspecialchars($vaga['titulo']); ?></h1>
                 <p class="text-gray-600">Preencha o formulário abaixo para se candidatar a esta vaga de voluntariado.</p>
             </div>
 
@@ -165,7 +172,7 @@ else {
                     </div>
 
                     <div class="mt-8 flex justify-end">
-                        <a href="detalhe-vaga.html" class="mr-4 px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
+                        <a href="detalhe-vaga.php?id_vaga=<?php echo $id_vaga; ?>" class="mr-4 px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors">
                             Cancelar
                         </a>
                         <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
@@ -217,7 +224,7 @@ else {
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2025 Voluntariado Conecta. Todos os direitos reservados.</p>
+                <p>&copy; 2026 Voluntariado Conecta. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>

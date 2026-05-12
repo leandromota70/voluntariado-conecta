@@ -119,7 +119,19 @@ $result = $stmt->get_result();
     </td>
     <td class="px-4 py-2">
         <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded">
-            Pendente
+            <?php
+$status = $row['status'] ?? 'pendente';
+
+$cor = match($status) {
+    'aprovado' => 'bg-green-100 text-green-800',
+    'rejeitado' => 'bg-red-100 text-red-800',
+    default => 'bg-yellow-100 text-yellow-800'
+};
+?>
+
+<span class="px-2 py-1 rounded <?php echo $cor; ?>">
+    <?php echo ucfirst($status); ?>
+</span>
         </span>
     </td>
 </tr>

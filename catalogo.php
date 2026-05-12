@@ -1,7 +1,20 @@
 <?php
 include("conexao.php");
 
-$result = mysqli_query($conexao, "SELECT * FROM vagas");
+// PAGINAÇÃO
+$pagina = intval($_GET['pagina'] ?? 1);
+$limite = 5;
+$offset = ($pagina - 1) * $limite;
+
+// BUSCA VAGAS COM LIMITE
+$sql = "SELECT * FROM vagas LIMIT $limite OFFSET $offset";
+$result = mysqli_query($conexao, $sql);
+
+// TOTAL DE REGISTROS
+$total_result = mysqli_query($conexao, "SELECT COUNT(*) as total FROM vagas");
+$total = mysqli_fetch_assoc($total_result)['total'];
+
+$total_paginas = ceil($total / $limite);
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +29,7 @@ $result = mysqli_query($conexao, "SELECT * FROM vagas");
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
-<body class="font-sans antialiased bg-gray-50">
+<body class="flex flex-col min-h-screen font-sans antialiased bg-gray-50">
     <!-- Header -->
     <header class="bg-white shadow-sm">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -37,7 +50,7 @@ $result = mysqli_query($conexao, "SELECT * FROM vagas");
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
+    <main class="flex-1 container mx-auto px-4 py-8">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
             <h1 class="text-3xl font-bold text-gray-800 mb-4 md:mb-0">Oportunidades de Voluntariado</h1>
             <a href="index.html" class="text-indigo-600 hover:text-indigo-800 flex items-center">
@@ -113,9 +126,36 @@ $result = mysqli_query($conexao, "SELECT * FROM vagas");
                 <a href="#" class="px-3 py-2 rounded-l-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
                     <i data-feather="chevron-left" class="w-5 h-5"></i>
                 </a>
-                <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-indigo-600 font-medium">1</a>
-                <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-gray-500 hover:bg-gray-50">2</a>
-                <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-gray-500 hover:bg-gray-50">3</a>
+                <?php if ($total_paginas > 1): ?>
+
+<div class="mt-8 flex justify-center">
+    <nav class="inline-flex rounded-md shadow">
+
+        <!-- ANTERIOR -->
+        <a href="?pagina=<?php echo max(1, $pagina - 1); ?>" 
+           class="px-3 py-2 border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+            ←
+        </a>
+
+        <!-- NÚMEROS -->
+        <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
+            <a href="?pagina=<?php echo $i; ?>" 
+               class="px-4 py-2 border 
+               <?php echo $i == $pagina ? 'bg-indigo-600 text-white' : 'bg-white text-gray-500'; ?>">
+               <?php echo $i; ?>
+            </a>
+        <?php endfor; ?>
+
+        <!-- PRÓXIMO -->
+        <a href="?pagina=<?php echo min($total_paginas, $pagina + 1); ?>" 
+           class="px-3 py-2 border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+            →
+        </a>
+
+    </nav>
+</div>
+
+<?php endif; ?>
                 <a href="#" class="px-3 py-2 rounded-r-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
                     <i data-feather="chevron-right" class="w-5 h-5"></i>
                 </a>
@@ -141,7 +181,7 @@ $result = mysqli_query($conexao, "SELECT * FROM vagas");
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2025 Voluntariado Conecta. Todos os direitos reservados.</p>
+                <p>&copy; 2026 Voluntariado Conecta. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>

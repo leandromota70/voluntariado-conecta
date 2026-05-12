@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// 🔒 valida login primeiro
 if (!isset($_SESSION['id_ong'])) {
     header('Location: ong-login.php');
     exit;
@@ -12,8 +11,10 @@ require 'conexao.php';
 $id_ong = $_SESSION['id_ong'];
 $nomeOng = $_SESSION['nome_ong'] ?? 'ONG';
 
-// 🔥 QUERY CORRETA COM CONTAGEM
 
+// =============================
+// 🔥 1. QUERY DAS VAGAS
+// =============================
 $sql = "
 SELECT v.*, COUNT(i.id) as total_inscritos
 FROM vagas v
@@ -25,13 +26,37 @@ GROUP BY v.id_vaga
 $stmt = $conexao->prepare($sql);
 
 if (!$stmt) {
-    die("Erro na query: " . $conexao->error);
+    die("Erro na query de vagas: " . $conexao->error);
 }
 
 $stmt->bind_param("i", $id_ong);
 $stmt->execute();
 
 $result_vagas = $stmt->get_result();
+
+
+// =============================
+// 🔥 2. QUERY DAS INSCRIÇÕES
+// =============================
+$sql_inscricoes = "
+SELECT i.*, v.titulo
+FROM inscricoes i
+INNER JOIN vagas v ON i.id_vaga = v.id_vaga
+WHERE v.id_ong = ?
+ORDER BY i.created_at DESC
+LIMIT 5
+";
+
+$stmt_insc = $conexao->prepare($sql_inscricoes);
+
+if (!$stmt_insc) {
+    die("Erro na query de inscrições: " . $conexao->error);
+}
+
+$stmt_insc->bind_param("i", $id_ong);
+$stmt_insc->execute();
+
+$result_inscricoes = $stmt_insc->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -212,7 +237,7 @@ $result_vagas = $stmt->get_result();
                 <?php echo $vaga['total_inscritos']; ?> inscritos
             </span>
 
-            <a href="inscritos.php?id_vaga=<?php echo $vaga['id_vaga']; ?>" 
+            <a href="detalhe-vaga.php?id=<?php echo $vaga['id_vaga']; ?>" 
    class="text-indigo-600 hover:text-indigo-900">
    Ver detalhes
 </a>
@@ -248,42 +273,92 @@ $result_vagas = $stmt->get_result();
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 h-10 w-10">
-                                                    <img class="h-10 w-10 rounded-full" src="http://static.photos/people/200x200/2" alt="">
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">João Silva</div>
-                                                    <div class="text-sm text-gray-500">joao@example.com</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Apoio Escolar</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-500">15/06/2023</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                Pendente
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <a href="#" class="text-indigo-600 hover:text-indigo-900">Ver</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 h-10 w-10">
-                                                    <img class="h-10 w-10 rounded-full" src="http://static.photos/people/200x200/3" alt="">
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">Ana Oliveira</div>
-                                                    <div class="text-sm text-gray-500">ana@example.com</div>
+
+<?php if ($result_inscricoes->num_rows > 0): ?>
+
+<?php while ($insc = $result_inscricoes->fetch_assoc()): ?>
+
+<tr class="hover:bg-gray-50">
+
+    <!-- NOME -->
+    <td class="px-6 py-4 whitespace-nowrap">
+        <div class="flex items-center">
+            <div class="flex-shrink-0 h-10 w-10">
+                <img class="h-10 w-10 rounded-full" 
+                     src="https://ui-avatars.com/api/?name=<?php echo urlencode($insc['nome']); ?>&background=4f46e5&color=fff">
+            </div>
+            <div class="ml-4">
+                <div class="text-sm font-medium text-gray-900">
+                    <?php echo htmlspecialchars($insc['nome']); ?>
+                </div>
+                <div class="text-sm text-gray-500">
+                    <?php echo htmlspecialchars($insc['email']); ?>
+                </div>
+            </div>
+        </div>
+    </td>
+
+    <!-- VAGA -->
+    <td class="px-6 py-4 whitespace-nowrap">
+        <?php echo htmlspecialchars($insc['titulo']); ?>
+    </td>
+
+    <!-- DATA -->
+    <td class="px-6 py-4 whitespace-nowrap">
+        <?php echo date('d/m/Y', strtotime($insc['created_at'] ?? 'now')); ?>
+    </td>
+
+    <!-- STATUS -->
+    <td class="px-6 py-4 whitespace-nowrap">
+        <?php
+$status = $insc['status'] ?? 'pendente';
+
+$cor = match($status) {
+    'aprovado' => 'bg-green-100 text-green-800',
+    'rejeitado' => 'bg-red-100 text-red-800',
+    default => 'bg-yellow-100 text-yellow-800'
+};
+?>
+
+<span class="px-2 inline-flex text-xs font-semibold rounded-full <?php echo $cor; ?>">
+    <?php echo ucfirst($status); ?>
+</span>
+    </td>
+
+    <!-- AÇÃO -->
+    <td class="px-6 py-4 whitespace-nowrap text-right">
+        <div class="flex gap-2 justify-end">
+
+    <!-- Aprovar -->
+    <a href="atualizar-status.php?id=<?php echo $insc['id']; ?>&status=aprovado"
+       class="text-green-600 hover:text-green-800 text-sm">
+       Aprovar
+    </a>
+
+    <!-- Rejeitar -->
+    <a href="atualizar-status.php?id=<?php echo $insc['id']; ?>&status=rejeitado"
+       class="text-red-600 hover:text-red-800 text-sm">
+       Rejeitar
+    </a>
+
+</div>
+    </td>
+
+</tr>
+
+<?php endwhile; ?>
+
+<?php else: ?>
+
+<tr>
+    <td colspan="5" class="text-center py-4 text-gray-500">
+        Nenhuma inscrição recente.
+    </td>
+</tr>
+
+<?php endif; ?>
+
+</tbody>
                                                 </div>
                                             </div>
                                         </td>
@@ -306,7 +381,10 @@ $result_vagas = $stmt->get_result();
                             </table>
                         </div>
                         <div class="px-6 py-4 border-t border-gray-200 text-center">
-                            <a href="#" class="text-indigo-600 hover:text-indigo-900 font-medium">Ver todas as inscrições</a>
+                            <a href="inscritos.php" 
+   class="text-indigo-600 hover:text-indigo-900 font-medium">
+    Ver todas as inscrições
+</a>
                         </div>
                     </div>
                 </div>
