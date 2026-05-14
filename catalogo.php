@@ -38,10 +38,10 @@ $total_paginas = ceil($total / $limite);
                 <span class="text-xl font-bold text-indigo-600">Voluntariado Conecta</span>
             </div>
             <nav class="hidden md:flex space-x-8">
-                <a href="index.html" class="text-gray-600 hover:text-indigo-600">Home</a>
-                <a href="catalogo.html" class="text-indigo-600 font-medium">Quero ser Voluntário</a>
-                <a href="ong-login.html" class="text-gray-600 hover:text-indigo-600">Sou ONG</a>
-                <a href="login.html" class="text-gray-600 hover:text-indigo-600">Login</a>
+                <a href="index.php" class="text-gray-600 hover:text-indigo-600">Home</a>
+                <a href="catalogo.php" class="text-indigo-600 font-medium">Quero ser Voluntário</a>
+                <a href="ong-login.php" class="text-gray-600 hover:text-indigo-600">Sou ONG</a>
+                
             </nav>
             <button class="md:hidden">
                 <i data-feather="menu" class="text-gray-600"></i>
@@ -53,7 +53,7 @@ $total_paginas = ceil($total / $limite);
     <main class="flex-1 container mx-auto px-4 py-8">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
             <h1 class="text-3xl font-bold text-gray-800 mb-4 md:mb-0">Oportunidades de Voluntariado</h1>
-            <a href="index.html" class="text-indigo-600 hover:text-indigo-800 flex items-center">
+            <a href="index.php" class="text-indigo-600 hover:text-indigo-800 flex items-center">
                 <i data-feather="arrow-left" class="mr-2"></i> Voltar para home
             </a>
         </div>

@@ -35,7 +35,7 @@
             <a href="index.php" class="text-indigo-600 font-medium">Home</a>
             <a href="catalogo.php" class="text-gray-600 hover:text-indigo-600">Quero ser Voluntário</a>
             <a href="ong-login.php" class="text-gray-600 hover:text-indigo-600">Sou ONG</a>
-            <a href="login.php" class="text-gray-600 hover:text-indigo-600">Login</a>
+            
         </nav>
     </div>
 </header>
@@ -94,7 +94,7 @@
 
 <!-- FOOTER -->
 <footer class="bg-gray-800 text-white py-6 text-center">
-    <p>&copy; 2025 Voluntariado Conecta</p>
+    <p>&copy; 2026 Voluntariado Conecta</p>
 </footer>
 
 <script>

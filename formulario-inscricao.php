@@ -73,7 +73,7 @@ else {
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
-<body class="font-sans antialiased bg-gray-50">
+<body class="flex flex-col min-h-screen font-sans antialiased bg-gray-50">
     <!-- Header -->
     <header class="bg-white shadow-sm">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -82,10 +82,10 @@ else {
                 <span class="text-xl font-bold text-indigo-600">Voluntariado Conecta</span>
             </div>
             <nav class="hidden md:flex space-x-8">
-                <a href="index.html" class="text-gray-600 hover:text-indigo-600">Home</a>
-                <a href="catalogo.html" class="text-indigo-600 font-medium">Quero ser Voluntário</a>
-                <a href="ong-login.html" class="text-gray-600 hover:text-indigo-600">Sou ONG</a>
-                <a href="login.html" class="text-gray-600 hover:text-indigo-600">Login</a>
+                <a href="index.php" class="text-gray-600 hover:text-indigo-600">Home</a>
+                <a href="catalogo.php" class="text-indigo-600 font-medium">Quero ser Voluntário</a>
+                <a href="ong-login.php" class="text-gray-600 hover:text-indigo-600">Sou ONG</a>
+                <a href="login.php" class="text-gray-600 hover:text-indigo-600">Login</a>
             </nav>
             <button class="md:hidden">
                 <i data-feather="menu" class="text-gray-600"></i>
@@ -94,7 +94,7 @@ else {
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
+    <main class="flex-1 container mx-auto px-4 py-8">
         <div class="max-w-3xl mx-auto">
             <div class="mb-8">
                 <h1 class="text-2xl font-bold text-gray-800 mb-2">Inscrição para: <?php echo htmlspecialchars($vaga['titulo']); ?></h1>

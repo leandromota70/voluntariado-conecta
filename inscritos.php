@@ -1,30 +1,35 @@
 <?php
-$host   = "localhost";
+session_start();
+
+if (!isset($_SESSION['id_ong'])) {
+    header("Location: ong-login.php");
+    exit;
+}
+
+$host    = "localhost";
 $usuario = "root";
-$senha  = "";
-$banco  = "voluntariado_conecta";
+$senha   = "";
+$banco   = "voluntariado_conecta";
 
 $conn = new mysqli($host, $usuario, $senha, $banco);
 
-// ✅ 1. valida conexão primeiro
+// ✅ valida conexão
 if ($conn->connect_error) {
     die("Falha na conexão: " . $conn->connect_error);
 }
 
 $conn->set_charset("utf8mb4");
 
-// ✅ 2. pega o id corretamente
-$id_vaga = intval($_GET['id_vaga'] ?? 0);
+// ✅ pega id da ONG logada
+$id_ong = $_SESSION['id_ong'];
 
-// 🔥 DEBUG (pode remover depois)
-echo "ID da vaga: " . $id_vaga . "<br>";
-
-// ✅ 3. query correta
+// ✅ busca TODAS inscrições da ONG
 $sql = "
 SELECT i.*, v.titulo
 FROM inscricoes i
 INNER JOIN vagas v ON i.id_vaga = v.id_vaga
-WHERE i.id_vaga = ?
+WHERE v.id_ong = ?
+ORDER BY i.created_at DESC
 ";
 
 $stmt = $conn->prepare($sql);
@@ -33,7 +38,8 @@ if (!$stmt) {
     die("Erro na query: " . $conn->error);
 }
 
-$stmt->bind_param("i", $id_vaga);
+$stmt->bind_param("i", $id_ong);
+
 $stmt->execute();
 
 $result = $stmt->get_result();
@@ -84,7 +90,7 @@ $result = $stmt->get_result();
               <img class="w-10 h-10 rounded-full" src="http://static.photos/people/200x200/1" alt="User profile">
             </div>
             <div class="ml-3">
-              <p class="text-sm font-medium text-white">Maria Silva</p>
+              <p class="text-sm font-medium text-white"><?php echo $_SESSION['nome_ong']; ?></p>
               <a href="logout.php" class="text-xs font-medium text-indigo-200 hover:text-white">Sair</a>
             </div>
           </div>

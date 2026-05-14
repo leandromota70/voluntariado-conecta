@@ -57,6 +57,58 @@ $stmt_insc->bind_param("i", $id_ong);
 $stmt_insc->execute();
 
 $result_inscricoes = $stmt_insc->get_result();
+// =============================
+// 🔥 3. TOTAL DE VAGAS ATIVAS
+// =============================
+$sql_total_vagas = "
+SELECT COUNT(*) AS total
+FROM vagas
+WHERE id_ong = ?
+";
+
+$stmt_total_vagas = $conexao->prepare($sql_total_vagas);
+$stmt_total_vagas->bind_param("i", $id_ong);
+$stmt_total_vagas->execute();
+
+$result_total_vagas = $stmt_total_vagas->get_result();
+$total_vagas = $result_total_vagas->fetch_assoc()['total'];
+
+
+// =============================
+// 🔥 4. TOTAL DE INSCRIÇÕES
+// =============================
+$sql_total_inscricoes = "
+SELECT COUNT(*) AS total
+FROM inscricoes i
+INNER JOIN vagas v ON i.id_vaga = v.id_vaga
+WHERE v.id_ong = ?
+";
+
+$stmt_total_insc = $conexao->prepare($sql_total_inscricoes);
+$stmt_total_insc->bind_param("i", $id_ong);
+$stmt_total_insc->execute();
+
+$result_total_insc = $stmt_total_insc->get_result();
+$total_inscricoes = $result_total_insc->fetch_assoc()['total'];
+
+
+// =============================
+// 🔥 5. VOLUNTÁRIOS APROVADOS
+// =============================
+$sql_total_aprovados = "
+SELECT COUNT(*) AS total
+FROM inscricoes i
+INNER JOIN vagas v ON i.id_vaga = v.id_vaga
+WHERE v.id_ong = ?
+AND i.status = 'aprovado'
+";
+
+$stmt_total_aprovados = $conexao->prepare($sql_total_aprovados);
+$stmt_total_aprovados->bind_param("i", $id_ong);
+$stmt_total_aprovados->execute();
+
+$result_total_aprovados = $stmt_total_aprovados->get_result();
+$total_aprovados = $result_total_aprovados->fetch_assoc()['total'];
 ?>
 
 <!DOCTYPE html>
@@ -169,7 +221,9 @@ $result_inscricoes = $stmt_insc->get_result();
                                 </div>
                                 <div>
                                     <p class="text-sm font-medium text-gray-500">Vagas Ativas</p>
-                                    <p class="text-2xl font-semibold text-gray-900">5</p>
+                                    <p class="text-2xl font-semibold text-gray-900">
+                                        <?php echo $total_vagas; ?>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -180,7 +234,9 @@ $result_inscricoes = $stmt_insc->get_result();
                                 </div>
                                 <div>
                                     <p class="text-sm font-medium text-gray-500">Inscrições</p>
-                                    <p class="text-2xl font-semibold text-gray-900">24</p>
+                                    <p class="text-2xl font-semibold text-gray-900">
+                                        <?php echo $total_inscricoes; ?>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -191,7 +247,9 @@ $result_inscricoes = $stmt_insc->get_result();
                                 </div>
                                 <div>
                                     <p class="text-sm font-medium text-gray-500">Voluntários Ativos</p>
-                                    <p class="text-2xl font-semibold text-gray-900">15</p>
+                                    <p class="text-2xl font-semibold text-gray-900">
+                                        <?php echo $total_aprovados; ?>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -237,7 +295,7 @@ $result_inscricoes = $stmt_insc->get_result();
                 <?php echo $vaga['total_inscritos']; ?> inscritos
             </span>
 
-            <a href="detalhe-vaga.php?id=<?php echo $vaga['id_vaga']; ?>" 
+            <a href="detalhe-vaga.php?id_vaga=<?php echo $vaga['id_vaga']; ?>" 
    class="text-indigo-600 hover:text-indigo-900">
    Ver detalhes
 </a>
@@ -359,22 +417,10 @@ $cor = match($status) {
 <?php endif; ?>
 
 </tbody>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">Arborização</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-500">14/06/2023</div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Aceito
+                                              
                                             </span>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <a href="#" class="text-indigo-600 hover:text-indigo-900">Ver</a>
+                                        
                                         </td>
                                     </tr>
                                 </tbody>

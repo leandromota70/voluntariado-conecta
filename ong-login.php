@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['id_ong']   = $ong['id_ong'];
                 $_SESSION['nome_ong'] = $ong['nome'];
 
-                // 🔴 AQUI QUE MUDA:
+                // 
                 header("Location: dashboard-ong.php");
                 exit;
             } else {
@@ -60,10 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span class="text-xl font-bold text-indigo-600">Voluntariado Conecta</span>
             </div>
             <nav class="hidden md:flex space-x-8">
-                <a href="index.html" class="text-gray-600 hover:text-indigo-600">Home</a>
-                <a href="catalogo.html" class="text-gray-600 hover:text-indigo-600">Quero ser Voluntário</a>
+                <a href="index.php" class="text-gray-600 hover:text-indigo-600">Home</a>
+                <a href="catalogo.php" class="text-gray-600 hover:text-indigo-600">Quero ser Voluntário</a>
                 <a href="ong-login.php" class="text-indigo-600 font-medium">Sou ONG</a>
-                <a href="ong-login.php" class="text-gray-600 hover:text-indigo-600">Login</a>
+                
             </nav>
         </div>
     </header>
@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </form>
 
                 <div class="mt-6 text-center">
-                    <a href="ong-cadastro.html" class="text-indigo-600 hover:underline">Cadastrar nova ONG</a>
+                    <a href="ong-cadastro.php" class="text-indigo-600 hover:underline">Cadastrar nova ONG</a>
                 </div>
 
             </div>
