@@ -108,7 +108,7 @@ else {
         </div>
     <?php endif; ?>
 
-    <?php echo "ID DA VAGA: " . $id_vaga; ?>
+    
                 <form action="formulario-inscricao.php" method="POST">
                      <input type="hidden" name="id_vaga" value="<?php echo $id_vaga; ?>">
 
